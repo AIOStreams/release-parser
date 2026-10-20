@@ -527,11 +527,6 @@ export const handlers: Handler[] = [
     transform: toBoolean(),
     skipIfFirst: true
   },
-  {
-    field: 'upscaled',
-    pattern: /\b\.AI\.\b/i,
-    transform: toBoolean()
-  },
 
   // Convert handler (lines 638-643 in handlers.go)
   {
@@ -3458,6 +3453,15 @@ export const handlers: Handler[] = [
     field: 'network',
     pattern: /(?<=\W{2})\b(?:MGM[P+]|EPIX)/i,
     transform: toValue('MGM+'),
+    remove: true,
+    skipIfFirst: true
+  },
+
+  // Standalone AI upscale tag, late so the tags around it are already excised
+  {
+    field: 'upscaled',
+    pattern: /(?<=[^\w-]{2})AI\b/,
+    transform: toBoolean(),
     remove: true,
     skipIfFirst: true
   },
