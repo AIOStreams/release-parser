@@ -1,35 +1,35 @@
-# parse-torrent-title
+# release-parser
 
-A TypeScript library for parsing torrent titles. This is mostly a port of [go-ptt](https://github.com/MunifTanjim/go-ptt), which in turn is inspired by [TheBeastLT/parse-torrent-title](https://github.com/TheBeastLT/parse-torrent-title) and [dreulavelle/PTT](https://github.com/dreulavelle/PTT).
+A TypeScript library for parsing torrent and Usenet release names. Formerly published as `@viren070/parse-torrent-title`. This is mostly a port of [go-ptt](https://github.com/MunifTanjim/go-ptt), which in turn is inspired by [TheBeastLT/parse-torrent-title](https://github.com/TheBeastLT/parse-torrent-title) and [dreulavelle/PTT](https://github.com/dreulavelle/PTT).
 
 ## Installation
 
 **npm:**
 
 ```bash
-npm install @viren070/parse-torrent-title
+npm install @aiostreams/release-parser
 ```
 
 **pnpm:**
 
 ```bash
-pnpm add @viren070/parse-torrent-title
+pnpm add @aiostreams/release-parser
 ```
 
 **yarn:**
 
 ```bash
-yarn add @viren070/parse-torrent-title
+yarn add @aiostreams/release-parser
 ```
 
 ## Demo
 
-Try out the parser in your browser with our [demo](https://viren070.github.io/parse-torrent-title/)! Enter any torrent filename and see the parsed results in real-time.
+Try out the parser in your browser with our [demo](https://aiostreams.github.io/release-parser/)! Enter any torrent filename and see the parsed results in real-time.
 
 ## Quick Start
 
 ```typescript
-import { parseTorrentTitle } from '@viren070/parse-torrent-title';
+import { parseTorrentTitle } from '@aiostreams/release-parser';
 
 const result = parseTorrentTitle(
   'The.Matrix.1999.1080p.BluRay.x264.DTS-HD.MA.5.1'
@@ -124,7 +124,7 @@ interface ParsedResult {
 For more control, you can use the `Parser` class:
 
 ```typescript
-import { Parser } from '@viren070/parse-torrent-title';
+import { Parser } from '@aiostreams/release-parser';
 
 // Create a parser with only specific fields
 const parser = new Parser().addDefaultHandlers(
@@ -193,7 +193,7 @@ interface Handler {
 Here is an example of a custom handler that finds a fictional "Source" tag (e.g., `[SRC-XYZ]`) and adds it to a custom field:
 
 ```javascript
-import { Parser, toTrimmed } from '@viren070/parse-torrent-title';
+import { Parser, toTrimmed } from '@aiostreams/release-parser';
 
 const parser = new Parser();
 
@@ -219,7 +219,7 @@ console.log(result.title); // "My Movie"
 You can use TypeScript generics to get full type safety for your custom fields:
 
 ```typescript
-import { Parser, Handler, transforms } from '@viren070/parse-torrent-title';
+import { Parser, Handler, transforms } from '@aiostreams/release-parser';
 
 const customHandler: Handler = {
   field: 'customId',
@@ -290,7 +290,7 @@ import {
   Handler,
   validators,
   transforms
-} from '@viren070/parse-torrent-title';
+} from '@aiostreams/release-parser';
 
 const handler: Handler = {
   field: 'episodes',
@@ -367,7 +367,7 @@ parseTorrentTitle('Dune.2021.2160p.UHD.BluRay.HDR10.DV.x265.DTS-HD.MA.5.1');
 This library is written in TypeScript and includes full type definitions. All types are exported for your use:
 
 ```typescript
-import { ParsedResult, Handler } from '@viren070/parse-torrent-title';
+import { ParsedResult, Handler } from '@aiostreams/release-parser';
 ```
 
 ## License

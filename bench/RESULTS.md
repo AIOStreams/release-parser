@@ -10,7 +10,7 @@ One title at a time, which is the API all of these parsers offer.
 
 | Parser | Language | μs/title | titles/s | vs this repo |
 | --- | --- | ---: | ---: | ---: |
-| **@viren070/parse-torrent-title** <br><sub>this repo</sub> | TypeScript | 19.14 | 52,234 | 1.00x |
+| **@aiostreams/release-parser** <br><sub>this repo</sub> | TypeScript | 19.14 | 52,234 | 1.00x |
 | [g0ldyy/torrent-parse-rank](https://github.com/g0ldyy/torrent-parse-rank) <br><sub>ptt-core, single-threaded</sub> | Rust | 32.62 | 30,660 | 1.70x slower |
 | [TheBeastLT/parse-torrent-title](https://github.com/TheBeastLT/parse-torrent-title) <br><sub>smaller handler set, see caveats</sub> | JavaScript | 40.07 | 24,959 | 2.09x slower |
 | [MunifTanjim/go-ptt](https://github.com/MunifTanjim/go-ptt) <br><sub>the port this library came from</sub> | Go | 403.27 | 2,480 | 21.06x slower |
@@ -26,7 +26,7 @@ they use every core on the machine.
 
 | Parser | Language | μs/title | titles/s | vs this repo |
 | --- | --- | ---: | ---: | ---: |
-| **@viren070/parse-torrent-title** <br><sub>worker_threads pool</sub> | TypeScript | 4.60 | 217,253 | 1.00x |
+| **@aiostreams/release-parser** <br><sub>worker_threads pool</sub> | TypeScript | 4.60 | 217,253 | 1.00x |
 | [g0ldyy/torrent-parse-rank](https://github.com/g0ldyy/torrent-parse-rank) <br><sub>ptt-core parse_many</sub> | Rust | 5.85 | 170,957 | 1.27x slower |
 
 `torrent-parse-rank` exposes `parse_many`, which spawns a thread scope per
@@ -69,7 +69,7 @@ less work to do:
 
 ## Revisions tested
 
-- @viren070/parse-torrent-title: `4a9c9b4c8e` (2026-08-04)
+- @aiostreams/release-parser: `4a9c9b4c8e` (2026-08-04)
 - [MunifTanjim/go-ptt](https://github.com/MunifTanjim/go-ptt): `d68f7eb2d5` (2026-02-17)
 - [g0ldyy/torrent-parse-rank](https://github.com/g0ldyy/torrent-parse-rank): `65c24c70e9` (2026-07-29)
 - [dreulavelle/PTT](https://github.com/dreulavelle/PTT): `88429bb90a` (2026-02-14)

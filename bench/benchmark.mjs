@@ -123,7 +123,7 @@ const RUNNER_ARGS = [corpusPath, String(WARMUP), String(ROUNDS)];
 const targets = [
   {
     name: 'ours',
-    label: '@viren070/parse-torrent-title',
+    label: '@aiostreams/release-parser',
     language: 'TypeScript',
     repo: null,
     dir: repoRoot,
@@ -232,7 +232,7 @@ const targets = [
   },
   {
     name: 'ours-parallel',
-    label: '@viren070/parse-torrent-title',
+    label: '@aiostreams/release-parser',
     language: 'TypeScript',
     repo: null,
     dir: repoRoot,

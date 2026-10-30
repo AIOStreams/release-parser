@@ -18,7 +18,7 @@ jobs:
         id: release
         with:
           release-type: node
-          package-name: '@viren070/parse-torrent-title'
+          package-name: '@aiostreams/release-parser'
       
       # Publish to npm when a release is created
       - uses: actions/checkout@v6
