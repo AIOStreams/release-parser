@@ -1,5 +1,103 @@
 # Changelog
 
+## [1.0.0](https://github.com/AIOStreams/release-parser/compare/release-parser-v1.0.0...release-parser-v1.0.0) (2026-10-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* the package is now @aiostreams/release-parser; @viren070/parse-torrent-title stays at 0.9.2.
+* replace edition with editions string array, remove remastered boolean, add regraded boolean
+
+### Features
+
+* add av1, vp9/8 codec handlers ([c73ead7](https://github.com/AIOStreams/release-parser/commit/c73ead7360a6441616939d1c7424fa44cbd24505))
+* add iTunes and showtime network handlers ([9d91db8](https://github.com/AIOStreams/release-parser/commit/9d91db812130620c05bad9a0a9ed2e03bb3de82e))
+* allow building custom parsers, export transforms/validators ([a59e102](https://github.com/AIOStreams/release-parser/commit/a59e10273b92b1382e96ebca88fdfc097c427b57))
+* expose country variant in `country` ([11a1aee](https://github.com/AIOStreams/release-parser/commit/11a1aee1fc95d20ef3eb45917efe3353669818ab))
+* improve general streaming platform support ([#59](https://github.com/AIOStreams/release-parser/issues/59)) ([4747f61](https://github.com/AIOStreams/release-parser/commit/4747f615e6944e6a93f6e345ddc740694428b9f7))
+* improve language parsing ([6f4f339](https://github.com/AIOStreams/release-parser/commit/6f4f3390975bf6840f892c242e72a570cd35d8ab))
+* initial commit ([d92c02d](https://github.com/AIOStreams/release-parser/commit/d92c02da64a7b64bb55713227f02b90a996a381a))
+* parse episode title in `episodeTitle` ([3fa9dee](https://github.com/AIOStreams/release-parser/commit/3fa9dee1213b79d2efe3574ef9dd67c0027d15ed))
+* publish as @aiostreams/release-parser ([9214189](https://github.com/AIOStreams/release-parser/commit/9214189042773009162c6a7443440bc58e374bd9))
+* replace edition with editions string array, remove remastered boolean, add regraded boolean ([de8d7fd](https://github.com/AIOStreams/release-parser/commit/de8d7fd3333b93d6b0495e3862bb17521970de03))
+* rework release group detection ([7ed1533](https://github.com/AIOStreams/release-parser/commit/7ed15337691479c724d8b36c9a540a67de28f1a3)), closes [#63](https://github.com/AIOStreams/release-parser/issues/63)
+* sync go-ptt changes ([8578d45](https://github.com/AIOStreams/release-parser/commit/8578d45b1824ebe3fab5f24b0549cedbae35641f))
+
+
+### Bug Fixes
+
+* add color corrected edition handler ([289e8cd](https://github.com/AIOStreams/release-parser/commit/289e8cd362b6c8c4b40bb8029228cc6d754ae3cd))
+* add handler for SDTV quality pattern ([937f7e1](https://github.com/AIOStreams/release-parser/commit/937f7e157a219da3f7c5695d939a37edac15e3fa))
+* add handler for WEBCap quality pattern ([ddc8cf3](https://github.com/AIOStreams/release-parser/commit/ddc8cf3468b4a4010ba66ea2cae8524a9b7264c3))
+* add less strict diamond edition handler ([eb7a3f8](https://github.com/AIOStreams/release-parser/commit/eb7a3f8b955326788a15034e7bc36be739247f72))
+* add less strict subbed handler when prefixed with official/dual ([e25f8d5](https://github.com/AIOStreams/release-parser/commit/e25f8d589dd229c95c367e09aa53b342d3ba8d7e))
+* add missing boundary in releaseTypes handler ([9cf947f](https://github.com/AIOStreams/release-parser/commit/9cf947fc80d63a546d77612ecdc2260f75426753))
+* add missing leading word boundary on zh handler ([1f07899](https://github.com/AIOStreams/release-parser/commit/1f07899434f6cccf4fbf440934f0c7262de9c5aa))
+* add validateNotStartSpaced validator for season handlers ([373b292](https://github.com/AIOStreams/release-parser/commit/373b29235626e81bc7c7a880acdc9871b0e47980))
+* adjust overly permissive TrueHD handlers ([5da5034](https://github.com/AIOStreams/release-parser/commit/5da5034b9674679f603b37138dcb3f550b5614a6))
+* adjust site parsing ([e688d93](https://github.com/AIOStreams/release-parser/commit/e688d934139f2f275d905772f0ed910f97028b72))
+* allow 2-3 instead of just 3 digit absolue episode at end of title ([7027757](https://github.com/AIOStreams/release-parser/commit/70277573c8fd768353fc18c8280c6235f2a8fe9c))
+* allow 3 digit number as absolute episode at the end of title before res/quality/codec ([ea31871](https://github.com/AIOStreams/release-parser/commit/ea3187179d80d0ce5f9cbfa9312344a7013efd06))
+* allow absolute episode with version after for no space-hyphen-space separator ([80f673f](https://github.com/AIOStreams/release-parser/commit/80f673f58eff19dd3b3697da8546e9b9e7f394af))
+* allow R\d at beginning nof DVD pattern ([9a50a0f](https://github.com/AIOStreams/release-parser/commit/9a50a0f1b7c642a26274b7325287ecfc98773d65))
+* allow underscores as episode separator and trailing bracket ([9a50a0f](https://github.com/AIOStreams/release-parser/commit/9a50a0f1b7c642a26274b7325287ecfc98773d65))
+* check if next char is word at end of title ([517cd56](https://github.com/AIOStreams/release-parser/commit/517cd565fb25b7942f9e2c8095a1f0fcc2bb6605)), closes [#31](https://github.com/AIOStreams/release-parser/issues/31)
+* correct export statement for ParsedResult in index.ts ([826b264](https://github.com/AIOStreams/release-parser/commit/826b264ceb261e94b4cae3f471424a186e7203c8))
+* detect numbered PROPER and RERIP releases ([fce0d16](https://github.com/AIOStreams/release-parser/commit/fce0d1629f64b87719de454756492480ecc9aa02))
+* ensure ppv is parsed and removed as its own field ([0a9497a](https://github.com/AIOStreams/release-parser/commit/0a9497a54cec7f5349a3a7ea45d8b91aa91f36f5))
+* episodeTitle fixes ([7e18c35](https://github.com/AIOStreams/release-parser/commit/7e18c35327e6367da456b6ab8414b5c1b32c0a3b))
+* exclude generic Spanish if Latin American Spanish is present ([332c781](https://github.com/AIOStreams/release-parser/commit/332c78193f77b74c5382569c066a19a9f212c28f))
+* find release group before removed tags and stray hyphens ([4ebab92](https://github.com/AIOStreams/release-parser/commit/4ebab9234bc18bbb348b2478553dd45dd435f437))
+* fix ci ([d55b382](https://github.com/AIOStreams/release-parser/commit/d55b3828a364eea81998f3933be35315e12ee5e1))
+* fix crunchyrol handler ([cbdea92](https://github.com/AIOStreams/release-parser/commit/cbdea92aea8e1460f2635a0a8288d39bbb61190e))
+* fix some stuff ([5d8faf9](https://github.com/AIOStreams/release-parser/commit/5d8faf9ac9b9a8e622754b00a78c9a9b7bf58751))
+* fixes ([36bc43b](https://github.com/AIOStreams/release-parser/commit/36bc43bb3598ae12ac58a21691bbb5e013477f99))
+* fixes ([2d3909a](https://github.com/AIOStreams/release-parser/commit/2d3909a0e4b40b193e5e3ff8c76afadd343438c3))
+* improve parsing - site ([8578d45](https://github.com/AIOStreams/release-parser/commit/8578d45b1824ebe3fab5f24b0549cedbae35641f))
+* improve season/episode parsing ([a0becbe](https://github.com/AIOStreams/release-parser/commit/a0becbec31714535fad7688f79d53b66b37de367))
+* improve season/episode parsing ([9a7091b](https://github.com/AIOStreams/release-parser/commit/9a7091bc18823e8cbb92c2102d71448e72f61ec0))
+* **languages:** stop matching HU, Pt and Nor against ordinary text ([#55](https://github.com/AIOStreams/release-parser/issues/55)) ([974aeea](https://github.com/AIOStreams/release-parser/commit/974aeea9ae3fb19b3ba7a302492723403a753088))
+* loosen check for separators between 3 digit number and add dbox handler ([5a4c815](https://github.com/AIOStreams/release-parser/commit/5a4c815b278c0fbab33cc9927956d450e9a1655c))
+* make it language handler more strict to prevent false positive ([8453fee](https://github.com/AIOStreams/release-parser/commit/8453fee3b69cc89038b1631762586893137a169d))
+* make separator before version optional ([c617117](https://github.com/AIOStreams/release-parser/commit/c61711709c7dd246201c1dc7682c95cc59d05296))
+* make trailing episode pattern more strict ([c187387](https://github.com/AIOStreams/release-parser/commit/c187387ca540c76129a2163d8bdd41a6f1176745))
+* move size handler up and add 20-40 group handler ([fd1e84a](https://github.com/AIOStreams/release-parser/commit/fd1e84a66456a83fb2d178fdbe465b03083da60a))
+* only match extended at end of title ([c075d41](https://github.com/AIOStreams/release-parser/commit/c075d41d284d67464e70a4f51c64a0cddbb9bdf3))
+* only match HC as a whole word for hardcoded ([fce0d16](https://github.com/AIOStreams/release-parser/commit/fce0d1629f64b87719de454756492480ecc9aa02))
+* only match sp when with other lang codes ([d04fc49](https://github.com/AIOStreams/release-parser/commit/d04fc4981270d6eff40e5fbb812b1665d6efe61f))
+* only match spanish short season tag at a word start ([f007cbb](https://github.com/AIOStreams/release-parser/commit/f007cbb9c42e8e0c182fe37576311b56e9ac282e))
+* only treat standalone AI as an upscale tag next to removed tags ([6a49ca2](https://github.com/AIOStreams/release-parser/commit/6a49ca2695c58def86753025aed34bfa425e867d))
+* parse bgaudio as bg ([18670e9](https://github.com/AIOStreams/release-parser/commit/18670e91bb37b0840fbe4469b3d293a78851760c)), closes [#33](https://github.com/AIOStreams/release-parser/issues/33)
+* parse Russian "A-B сезон" as a season range ([#67](https://github.com/AIOStreams/release-parser/issues/67)) ([dc12b1c](https://github.com/AIOStreams/release-parser/commit/dc12b1c75d26c5de7e10c13ebc22a07c41b15d82))
+* parse Russian "N сезон (A-B из C)" as season N with an episode range ([#70](https://github.com/AIOStreams/release-parser/issues/70)) ([46bc6fe](https://github.com/AIOStreams/release-parser/commit/46bc6fef150649410d8d307a08e97ba3a3559eb6))
+* parse Russian "ТВ-N, часть M" season marker ([#71](https://github.com/AIOStreams/release-parser/issues/71)) ([20c287d](https://github.com/AIOStreams/release-parser/commit/20c287d0ea407e8e809f6c45c1bce66bef69c66b))
+* parse Russian season pack notation ("N сезон (A-B серии)", "Сезоны A-B") ([#66](https://github.com/AIOStreams/release-parser/issues/66)) ([55eddcb](https://github.com/AIOStreams/release-parser/commit/55eddcb3835163c27ce434b905f22883cdcb4d05))
+* remove site handler causing issues ([c805976](https://github.com/AIOStreams/release-parser/commit/c8059768943325fe6868a92f6cdd7ca4118ece8b)), closes [#25](https://github.com/AIOStreams/release-parser/issues/25)
+* remove trailing absolute episode from title ([8578d45](https://github.com/AIOStreams/release-parser/commit/8578d45b1824ebe3fab5f24b0549cedbae35641f))
+* remove xcid/divx quality handler and add workprint handler ([925e50d](https://github.com/AIOStreams/release-parser/commit/925e50d8d1b863b58e3ff681de304e4a9bfeedbd))
+* report Extended Edition alongside Director's Cut ([fce0d16](https://github.com/AIOStreams/release-parser/commit/fce0d1629f64b87719de454756492480ecc9aa02))
+* shift endOfTitle if match index is 0 ([89dfdfd](https://github.com/AIOStreams/release-parser/commit/89dfdfdd2f2b49bbadc4cbcae759f23954a7f0fd))
+* skip anniversary edition if before year ([d163ac4](https://github.com/AIOStreams/release-parser/commit/d163ac4403ddc60b0859447de1e7c8c50eb264db))
+* skip cam if first ([ce37cd5](https://github.com/AIOStreams/release-parser/commit/ce37cd5b9e737e217e25befb01becd4f80e88bec))
+* skip field without value when determining skipIfFirst ([8ef36fc](https://github.com/AIOStreams/release-parser/commit/8ef36fcf4ef45452b781760c878afa2b16e1c9c3))
+* skip nickelodeon handler if first ([e25d0c7](https://github.com/AIOStreams/release-parser/commit/e25d0c7535d0f3bcd177f40aa09c7eb0a09bc791))
+* some fixes ([799d6f7](https://github.com/AIOStreams/release-parser/commit/799d6f7b8c58e9ea453498c45523ec42ade552e3))
+* some improvements to title parsing ([181ddfe](https://github.com/AIOStreams/release-parser/commit/181ddfe8f920a9ca4354abdc988597e50a8157b8))
+* some more fixes ([746665d](https://github.com/AIOStreams/release-parser/commit/746665d317d789dcb4866a3f016fdd060a133c08))
+* stop es-419 matching words that start with "es" ([fce0d16](https://github.com/AIOStreams/release-parser/commit/fce0d1629f64b87719de454756492480ecc9aa02))
+* tatsuki fujimoto 17-26 ([36425b4](https://github.com/AIOStreams/release-parser/commit/36425b43c9c47c56078b482fc5d37d4540b8d44c))
+* tighten release tag and language patterns ([#60](https://github.com/AIOStreams/release-parser/issues/60)) ([fce0d16](https://github.com/AIOStreams/release-parser/commit/fce0d1629f64b87719de454756492480ecc9aa02))
+* update HDTV quality pattern to exclude '-ELITE.NET' suffix ([c3532c6](https://github.com/AIOStreams/release-parser/commit/c3532c6807df5f539a916e98d142ba4ec7139d4f))
+* update regex patterns for Director's Edition & Collector's Cut ([#37](https://github.com/AIOStreams/release-parser/issues/37)) ([f6afad6](https://github.com/AIOStreams/release-parser/commit/f6afad63de5e071c6006206650928dff548f2c1d))
+* update site handler ([6189dae](https://github.com/AIOStreams/release-parser/commit/6189dae818bd0e5f5afcc1ffb480af16248e911e))
+* update site handlers ([1f4de65](https://github.com/AIOStreams/release-parser/commit/1f4de65463e1c1c569f2a4e645c201053abf3a0d))
+* use correct esm import syntax ([aaf2743](https://github.com/AIOStreams/release-parser/commit/aaf274392297a9f6542bc583ecb8dd425c4eef7e))
+
+
+### Performance Improvements
+
+* skip regexes that cannot match using a literal prefilter ([786b096](https://github.com/AIOStreams/release-parser/commit/786b096d7afa23eb56d8da0c89485ac52ce07a2c))
+
 ## [1.0.0](https://github.com/AIOStreams/release-parser/compare/v0.9.2...v1.0.0) (2026-10-30)
 
 
