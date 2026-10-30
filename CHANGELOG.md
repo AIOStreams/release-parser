@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/AIOStreams/release-parser/compare/v1.0.0...v1.0.1) (2026-10-30)
+
+
+### Miscellaneous Chores
+
+* release 1.0.1 ([c1dbcc7](https://github.com/AIOStreams/release-parser/commit/c1dbcc7f60a610a8b2f60f52ff8827e303453d82))
+
 ## [1.0.0](https://github.com/AIOStreams/release-parser/compare/v0.9.2...v1.0.0) (2026-10-30)
 
 
