@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.0.0](https://github.com/AIOStreams/release-parser/compare/v0.9.2...v1.0.0) (2026-10-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* the package is now @aiostreams/release-parser; @viren070/parse-torrent-title stays at 0.9.2.
+
+### Features
+
+* publish as @aiostreams/release-parser ([9214189](https://github.com/AIOStreams/release-parser/commit/9214189042773009162c6a7443440bc58e374bd9))
+
 ## [0.9.2](https://github.com/Viren070/parse-torrent-title/compare/v0.9.1...v0.9.2) (2026-10-20)
 
 
