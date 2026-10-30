@@ -4,11 +4,7 @@
     ".": {
       "include-component-in-tag": false,
       "release-type": "node",
-      "pull-request-title-pattern": "chore: release ${version}",
-      "exclude-paths": [
-        ".release-please-manifest.json",
-        "release-please-config.json"
-      ]
+      "pull-request-title-pattern": "chore: release ${version}"
     }
   }
 }
