@@ -2,46 +2,39 @@ name: Release Please
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
+  # Retries a publish that failed after the release was cut.
+  workflow_dispatch:
 
 permissions:
   contents: write
   pull-requests: write
+  # Trusted publishing: npm checks the workflow's OIDC token, so there's no NPM_TOKEN.
   id-token: write
 
 jobs:
   release-please:
+    if: ${{ github.event_name == 'push' }}
     runs-on: ubuntu-latest
+    outputs:
+      created: ${{ steps.release.outputs.release_created }}
     steps:
       - uses: googleapis/release-please-action@v4
         id: release
         with:
-          release-type: node
-          package-name: '@aiostreams/release-parser'
-      
-      # Publish to npm when a release is created
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json
+
+  publish:
+    needs: [release-please]
+    if: ${{ !cancelled() && (needs.release-please.outputs.created == 'true' || github.event_name == 'workflow_dispatch') }}
+    runs-on: ubuntu-latest
+    steps:
       - uses: actions/checkout@v6
-        if: ${{ steps.release.outputs.release_created }}
-      
-      - name: Install corepack
-        run: corepack enable
-      
+      - run: corepack enable
       - uses: actions/setup-node@v6
-        if: ${{ steps.release.outputs.release_created }}
         with:
-          registry-url: 'https://registry.npmjs.org'
           node-version: 24
-      
-      - name: Install dependencies
-        if: ${{ steps.release.outputs.release_created }}
-        run: pnpm install
-      
-      - name: Build
-        if: ${{ steps.release.outputs.release_created }}
-        run: pnpm build
-      
-      # Trusted publishing through id-token, so no token; it needs the npm CLI, not pnpm.
-      - name: Publish to npm
-        if: ${{ steps.release.outputs.release_created }}
-        run: npm publish --access public
+          registry-url: 'https://registry.npmjs.org'
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm publish --no-git-checks
