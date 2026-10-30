@@ -1,4 +1,4 @@
-import { parseTorrentTitle } from 'https://cdn.jsdelivr.net/npm/@viren070/parse-torrent-title@latest/dist/index.js';
+import { parseTorrentTitle } from 'https://cdn.jsdelivr.net/npm/@aiostreams/release-parser@latest/dist/index.js';
 
 // Field categories with icons
 const categories = {
