@@ -61,6 +61,26 @@ export const handlers: Handler[] = [
     pattern: /413 Days/i,
     remove: true
   },
+  // Aspect ratio in a list of tags after a resolution or source tag
+  // ("[BDRip 1080p, 16x9]", "DVDRip] [FullScreen 4x3]"), removed so it is not
+  // read as a season and an episode
+  {
+    field: 'title',
+    pattern: /(?:\D|^)(16[XxХх]9|4[XxХх]3)(?:\D|$)/,
+    validateMatch: (input: string, idxs: number[]): boolean => {
+      const before = input.substring(0, idxs[2]);
+      return (
+        /(?:\b\d{3,4}[pi]|(?:BD|DVD|HD|WEB|TV|SAT|VHS)-?Rip|Remux|\bDVD-?\d?|Blu-?Ray|WEB-?DL|HDTV|\bWS|(?:Wide|Full) ?Screen)\b/i.test(
+          before
+        ) &&
+        (/[,/[(] *$/.test(before) ||
+          /^ *[\]),/]/.test(input.substring(idxs[3])))
+      );
+    },
+    keepMatching: true,
+    remove: true,
+    matchGroup: 1
+  },
 
   // PPV handlers (lines 294-300 in handlers.go)
   {
