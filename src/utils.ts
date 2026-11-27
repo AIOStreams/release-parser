@@ -14,12 +14,16 @@ export const NON_ENGLISH_CHARS =
   '\\u3040-\\u309F\\u30A0-\\u30FF\\u4E00-\\u9FFF\\u0400-\\u04FF';
 
 // Main regex patterns from ptt.go
+// The lookaheads in the two patterns below change no match: each states where
+// its alternative has to end anyway (at the ")" closing the name, at the next
+// "/" or "|"). Without them, a start that cannot end there backtracks through
+// every split of the rest of the name, which is cubic in its length.
 export const russianCastRegex = new RegExp(
-  `(\\([^)]*[${NON_ENGLISH_CHARS}][^)]*\\))$|(?:\\/.*?)(\\(.*\\))$`,
+  `(\\((?=[^)]*\\)$)[^)]*[${NON_ENGLISH_CHARS}][^)]*\\))$|(?:\\/(?=.*\\)$).*?)(\\(.*\\))$`,
   'u'
 );
 export const altTitlesRegex = new RegExp(
-  `[^/|(]*[${NON_ENGLISH_CHARS}][^/|]*[/|]|[/|][^/|(]*[${NON_ENGLISH_CHARS}][^/|]*`,
+  `(?=[^/|]*[/|])[^/|(]*[${NON_ENGLISH_CHARS}][^/|]*[/|]|[/|][^/|(]*[${NON_ENGLISH_CHARS}][^/|]*`,
   'gu'
 );
 export const notOnlyNonEnglishRegex = new RegExp(
