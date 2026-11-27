@@ -1,7 +1,7 @@
 import { parseTorrentTitle } from '../index';
 
-// "16x9" and "4x3" listed after the resolution or the source of a release are
-// the aspect ratio of the video. They are not a season and an episode.
+// "16x9" and "4x3" in a list of tags after the resolution or the source of a
+// release are the aspect ratio of the video. They are not a season and an episode.
 describe('parseTorrentTitle - aspect ratio', () => {
   test('Сумерки. Сага. Рассвет: Часть 2 / The Twilight Saga: Breaking Dawn - Part 2 (Билл Кондон / Bill Condon) [2012, США, фэнтези, драма, мелодрама, приключения, BDRip 1080p, 16x9] Dub + UKR + Original + Sub Rus + Original Eng', () => {
     const result = parseTorrentTitle(
@@ -25,8 +25,8 @@ describe('parseTorrentTitle - aspect ratio', () => {
     expect(result.year).toBe('1980');
   });
 
-  test('Movie.2012.BDRip.1080p.16x9.x264', () => {
-    const result = parseTorrentTitle('Movie.2012.BDRip.1080p.16x9.x264');
+  test('Movie (2012) [BDRip 1080p, 16x9] x264', () => {
+    const result = parseTorrentTitle('Movie (2012) [BDRip 1080p, 16x9] x264');
     expect(result.seasons).toBeUndefined();
     expect(result.episodes).toBeUndefined();
     expect(result.title).toBe('Movie');
@@ -35,17 +35,17 @@ describe('parseTorrentTitle - aspect ratio', () => {
     expect(result.codec).toBe('x264');
   });
 
-  test('Movie 2012 DVDRip WS 16х9: Cyrillic "х"', () => {
-    const result = parseTorrentTitle('Movie 2012 DVDRip WS 16х9');
+  test('Movie 2012 [DVDRip, WS 16х9]: Cyrillic "х"', () => {
+    const result = parseTorrentTitle('Movie 2012 [DVDRip, WS 16х9]');
     expect(result.title).toBe('Movie');
     expect(result.seasons).toBeUndefined();
     expect(result.episodes).toBeUndefined();
     expect(result.quality).toBe('DVDRip');
   });
 
-  test('Movie.2012.INTERNAL.BDRip.1080p.16x9.x264', () => {
+  test('Movie.2012.INTERNAL.BDRip.x264 [1080p, 16x9]', () => {
     const result = parseTorrentTitle(
-      'Movie.2012.INTERNAL.BDRip.1080p.16x9.x264'
+      'Movie.2012.INTERNAL.BDRip.x264 [1080p, 16x9]'
     );
     expect(result.seasons).toBeUndefined();
     expect(result.episodes).toBeUndefined();
@@ -53,16 +53,31 @@ describe('parseTorrentTitle - aspect ratio', () => {
     expect(result.resolution).toBe('1080p');
   });
 
-  test('Movie 2012 HFR 2160p 16x9', () => {
-    const result = parseTorrentTitle('Movie 2012 HFR 2160p 16x9');
+  test('Movie 2012 HFR [2160p, 16x9]', () => {
+    const result = parseTorrentTitle('Movie 2012 HFR [2160p, 16x9]');
     expect(result.seasons).toBeUndefined();
     expect(result.episodes).toBeUndefined();
     expect(result.title).toBe('Movie');
     expect(result.resolution).toBe('4k');
   });
 
-  test('Movie 2012 Remux 16x9', () => {
-    const result = parseTorrentTitle('Movie 2012 Remux 16x9');
+  test('Movie 2012 [Remux, 16x9]', () => {
+    const result = parseTorrentTitle('Movie 2012 [Remux, 16x9]');
+    expect(result.seasons).toBeUndefined();
+    expect(result.episodes).toBeUndefined();
+    expect(result.title).toBe('Movie');
+  });
+
+  test('Movie (2012) [BDRip 1080p, 16Х9]: capital Cyrillic "Х"', () => {
+    const result = parseTorrentTitle('Movie (2012) [BDRip 1080p, 16Х9]');
+    expect(result.seasons).toBeUndefined();
+    expect(result.episodes).toBeUndefined();
+    expect(result.title).toBe('Movie');
+    expect(result.resolution).toBe('1080p');
+  });
+
+  test('Movie [BDRip 1080p, 16x9 anamorph]', () => {
+    const result = parseTorrentTitle('Movie [BDRip 1080p, 16x9 anamorph]');
     expect(result.seasons).toBeUndefined();
     expect(result.episodes).toBeUndefined();
     expect(result.title).toBe('Movie');
@@ -78,8 +93,8 @@ describe('parseTorrentTitle - aspect ratio', () => {
     expect(result.year).toBe('2010');
   });
 
-  test('Show.S04.720p.HDTV.16x9: the season is kept, no episode', () => {
-    const result = parseTorrentTitle('Show.S04.720p.HDTV.16x9');
+  test('Show.S04.[720p, HDTV, 16x9]: the season is kept, no episode', () => {
+    const result = parseTorrentTitle('Show.S04.[720p, HDTV, 16x9]');
     expect(result.seasons).toEqual([4]);
     expect(result.episodes).toBeUndefined();
   });
@@ -104,6 +119,35 @@ describe('parseTorrentTitle - aspect ratio', () => {
     const result = parseTorrentTitle('Show.S02E05.720p.HDTV.16x9.x264');
     expect(result.seasons).toEqual([2]);
     expect(result.episodes).toEqual([5]);
+  });
+
+  test('[HDTV] Show 16x9: outside a list of tags "16x9" is season 16 episode 9', () => {
+    const result = parseTorrentTitle('[HDTV] Show 16x9');
+    expect(result.title).toBe('Show');
+    expect(result.seasons).toEqual([16]);
+    expect(result.episodes).toEqual([9]);
+  });
+
+  test('Los Simpson HDTV 16x9', () => {
+    const result = parseTorrentTitle('Los Simpson HDTV 16x9');
+    expect(result.title).toBe('Los Simpson');
+    expect(result.seasons).toEqual([16]);
+    expect(result.episodes).toEqual([9]);
+  });
+
+  test('Show.Name.720p.HDTV.16x9.Episode.Title', () => {
+    const result = parseTorrentTitle('Show.Name.720p.HDTV.16x9.Episode.Title');
+    expect(result.title).toBe('Show Name');
+    expect(result.seasons).toEqual([16]);
+    expect(result.episodes).toEqual([9]);
+    expect(result.episodeTitle).toBe('Episode Title');
+  });
+
+  test('The Simpsons [16x9] HDTV: with no tag before it "16x9" is season 16 episode 9', () => {
+    const result = parseTorrentTitle('The Simpsons [16x9] HDTV');
+    expect(result.title).toBe('The Simpsons');
+    expect(result.seasons).toEqual([16]);
+    expect(result.episodes).toEqual([9]);
   });
 
   test('Greys.Anatomy.16x09.HDTV.x264: padded "16x09" is still season 16 episode 9', () => {
